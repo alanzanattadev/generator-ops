@@ -48,37 +48,28 @@ module.exports = yeoman.generators.Base.extend({
       done();
     }.bind(this));
   },
-  /*promptFrameworks: function() {
+  promptFrameworks: function() {
     var done = this.async();
-    this.prompt({
+    this.prompt([{
       type    : 'checkbox',
-      name    : 'response',
+      name    : 'frameworks',
       choices : ['AngularJS', 'Polymer'],
       message : 'Choose frameworks you want to use',
       default : this.appname // Default to current folder name
-    }, function (answers) {
-      this.log(answers.name);
-      if (answers.response.contain('AngularJS'))
-        {
-          this.prompt({
-            type    : 'checkbox',
-            name    : 'angularmod',
-            choices : ['angular-route', 'angular-resources', 'angular-touch', 'angular-mocks'],
-            message : 'Choose angular modules you want to use',
-            default : this.appname // Default to current folder name
-          }, function (answers) {
-            this.log(answers.angularmod);
+    }, {
+      when    : function(answer) {
+        return answer.frameworks.contain('AngularJS');
+      },
+      type    : 'checkbox',
+      name    : 'angularmod',
+      choices : ['angular-route', 'angular-resources', 'angular-touch', 'angular-mocks'],
+      message : 'Choose angular modules you want to use',
+      default : this.appname // Default to current folder name
+    }], function (answers) {
 
-            done();
-          }.bind(this));
-        }
-      if (answers.response.contain('Polymer'))
-        {
-
-        }
       done();
     }.bind(this));
-  },*/
+  },
 
   writeConf: function() {
     this.src.copy('.gitignore', '.gitignore');
