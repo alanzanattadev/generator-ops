@@ -44,6 +44,7 @@ module.exports = yeoman.generators.Base.extend({
       packagejson.description = answers.desc;
       packagejson.author = answers.author;
       this.dest.write("package.json", JSON.stringify(packagejson, undefined, 4));
+      this.dest.write("bower.json", JSON.stringify(packagejson, undefined, 4));
       done();
     }.bind(this));
   },
