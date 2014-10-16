@@ -56,29 +56,39 @@ module.exports = yeoman.generators.Base.extend({
     this.prompt([{
       type    : 'checkbox',
       name    : 'frameworks',
-      choices : ['AngularJS', 'Polymer', 'Unit Tests Framework'],
+      choices : ['angularjs', 'polymer', 'Unit Tests Framework'],
       message : 'Choose frameworks you want to use',
-      default : [] // Default to current folder name
+      default : []
     }, {
       when    : function(answer) {
-        return answer.frameworks.contain('AngularJS');
+        return answer.frameworks.contain('angularjs');
       },
       type    : 'checkbox',
       name    : 'angularmods',
       choices : ['angular-route', 'angular-resources', 'angular-touch', 'angular-mocks'],
       message : 'Choose angular modules you want to use',
-      default : [] // Default to current folder name
+      default : []
     }, {
       when    : function(answer) {
         return answer.frameworks.contain('Unit Tests Framework');
       },
       type    : 'list',
       name    : 'unittestframework',
-      choices : ['Jasmine', 'Mocha', 'Qunit'],
+      choices : ['jasmine', 'mocha', 'qunitjs'],
       message : 'Choose which unit test framework you want to use',
-      default : 'Jasmine'
+      default : 'jasmine'
     }], function (answers) {
-
+      for (i in answers.frameworks)
+        {
+          if (answers.frameworks[i] != 'Unit Tests Framework')
+            {
+              this.bowerInstall(answers.frameworks[i], {'save':true}, done);
+            }
+        }
+      if (answers.frameworks.contain('Unit Tests Framework'))
+        {
+          this.npmInstall(answers.unittestframework, {'save':true}, done);
+        }
       done();
     }.bind(this));
   },
