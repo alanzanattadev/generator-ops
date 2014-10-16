@@ -18,7 +18,7 @@ module.exports = yeoman.generators.Base.extend({
     this.dest.mkdir('www/img', '755');
     this.dest.mkdir('www/js', '755');
   },
-  /*promptInfos: function() {
+  promptInfos: function() {
     this.packagejson = {
       version: '0.1.0',
       main: 'index.js',
@@ -33,10 +33,7 @@ module.exports = yeoman.generators.Base.extend({
     }, function (answers) {
       this.log('project name is : ' + answers.name);
       this.packagejson.name = answers.name;
-      done();
-    }.bind(this));
-    var done = this.async();
-    this.prompt({
+    }, {
       type    : 'input',
       name    : 'desc',
       message : 'Project Desc',
@@ -44,17 +41,6 @@ module.exports = yeoman.generators.Base.extend({
     }, function (answers) {
       this.log('project desc is : ' + answers.desc);
       packagejson.description = answers.desc;
-      done();
-    }.bind(this));
-    var done = this.async();
-    this.prompt({
-      type    : 'input',
-      name    : 'author',
-      message : 'Project Author',
-      default : this.appname // Default to current folder name
-    }, function (answers) {
-      this.log('project author is : ' + answers.author);
-      packagejson.author = answers.author;
       done();
     }.bind(this));
     this.dest.write("package.json", JSON.stringify(this.packagejson, undefined, true));
