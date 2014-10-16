@@ -30,6 +30,11 @@ module.exports = yeoman.generators.Base.extend({
       name    : 'desc',
       message : 'Project Desc',
       default : this.appname // Default to current folder name
+    }, {
+      type    : 'input',
+      name    : 'author',
+      message : 'Project Author',
+      default : this.appname // Default to current folder name
     }], function (answers) {
       var packagejson = {
         version: '0.1.0',
@@ -37,6 +42,7 @@ module.exports = yeoman.generators.Base.extend({
       };
       packagejson.name = answers.name;
       packagejson.description = answers.desc;
+      packagejson.author = answers.author;
       this.dest.write("package.json", JSON.stringify(packagejson, undefined, 4));
       done();
     }.bind(this));
