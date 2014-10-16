@@ -53,18 +53,27 @@ module.exports = yeoman.generators.Base.extend({
     this.prompt([{
       type    : 'checkbox',
       name    : 'frameworks',
-      choices : ['AngularJS', 'Polymer'],
+      choices : ['AngularJS', 'Polymer', 'Unit Tests Framework'],
       message : 'Choose frameworks you want to use',
-      default : this.appname // Default to current folder name
+      default : [] // Default to current folder name
     }, {
       when    : function(answer) {
         return answer.frameworks.contain('AngularJS');
       },
       type    : 'checkbox',
-      name    : 'angularmod',
+      name    : 'angularmods',
       choices : ['angular-route', 'angular-resources', 'angular-touch', 'angular-mocks'],
       message : 'Choose angular modules you want to use',
-      default : this.appname // Default to current folder name
+      default : [] // Default to current folder name
+    }, {
+      when    : function(answer) {
+        return answer.frameworks.contain('Unit Tests Framework');
+      },
+      type    : 'list',
+      name    : 'unittestframework',
+      choices : ['Jasmine', 'Mocha', 'Qunit'],
+      message : 'Choose which unit test framework you want to use',
+      default : 'Jasmine'
     }], function (answers) {
 
       done();
