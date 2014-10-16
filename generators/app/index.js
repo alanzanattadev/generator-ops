@@ -17,6 +17,9 @@ module.exports = yeoman.generators.Base.extend({
     this.dest.mkdir('www/css', '755');
     this.dest.mkdir('www/img', '755');
     this.dest.mkdir('www/js', '755');
+    this.dest.mkdir('tests', '755');
+    this.dest.mkdir('tests/unit', '755');
+    this.dest.mkdir('tests/e2e', '755');
   },
   promptInfos: function() {
     var done = this.async();
