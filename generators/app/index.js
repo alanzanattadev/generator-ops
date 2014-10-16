@@ -25,7 +25,7 @@ module.exports = yeoman.generators.Base.extend({
       name: ''
     };
     var done = this.async();
-    this.prompt({
+    this.prompt([{
       type    : 'input',
       name    : 'name',
       message : 'Project Name',
@@ -42,7 +42,7 @@ module.exports = yeoman.generators.Base.extend({
       this.log('project desc is : ' + answers.desc);
       packagejson.description = answers.desc;
       done();
-    }.bind(this));
+    }].bind(this));
     this.dest.write("package.json", JSON.stringify(this.packagejson, undefined, true));
   },
   /*promptFrameworks: function() {
