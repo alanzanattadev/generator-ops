@@ -51,6 +51,10 @@ module.exports = yeoman.generators.Base.extend({
       done();
     }.bind(this));
   },
+  writeConf: function() {
+    this.src.copy('.gitignore', '.gitignore');
+    this.src.copy('.bowerrc', '.bowerrc');
+  },
   promptFrameworks: function() {
     var done = this.async();
     this.prompt([{
@@ -91,10 +95,5 @@ module.exports = yeoman.generators.Base.extend({
         }
       done();
     }.bind(this));
-  },
-
-  writeConf: function() {
-    this.src.copy('.gitignore', '.gitignore');
-    this.src.copy('.bowerrc', '.bowerrc');
   }
 });
