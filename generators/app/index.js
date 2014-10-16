@@ -18,7 +18,7 @@ module.exports = yeoman.generators.Base.extend({
     this.dest.mkdir('www/img', '755');
     this.dest.mkdir('www/js', '755');
   },
-  promptInfos: function() {
+  /*promptInfos: function() {
     this.packagejson = {
       version: '0.1.0',
       main: 'index.js',
