@@ -69,7 +69,12 @@ module.exports = yeoman.generators.Base.extend({
       this.prompt([{
         type    : 'checkbox',
         name    : 'frameworkstype',
-        choices : ['Javascript Structure Frameworks', 'WebComponent Frameworks', 'Unit Tests Framework'],
+        choices : ['Javascript Structure Frameworks',
+                    'WebComponent Frameworks',
+                    'Unit Tests Framework',
+                    'CSS Replacements', // A Implementer
+                    'Javascript Replacements' // A Implementer
+                  ],
         message : 'Choose frameworks types you want to use',
         default : []
       }, {
