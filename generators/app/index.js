@@ -152,6 +152,7 @@ module.exports = yeoman.generators.Base.extend({
                       {
                         this.bowerInstall([answers.polymermods[j]], {'save':true}, done);
                       }
+                    this.dest.mkdir('www/components', 755);
                     break;
                   case "X-Tag":
                     // A Completer
@@ -179,6 +180,7 @@ module.exports = yeoman.generators.Base.extend({
                     this.dest.mkdir('www/js/controllers', '755');
                     this.dest.mkdir('www/js/services', '755');
                     this.dest.mkdir('www/js/routes', '755');
+                    this.dest.mkdir('www/templates', '755');
                   default:
                     this.bowerInstall([answers.structureframeworks[i]], {'save':true}, done);
                 }
