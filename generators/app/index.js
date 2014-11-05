@@ -72,7 +72,7 @@ module.exports = yeoman.generators.Base.extend({
         },
         type    : 'checkbox',
         name    : 'angularmods',
-        choices : ['angular-route', 'angular-resources', 'angular-touch', 'angular-mocks'],
+        choices : ['angular-route', 'angular-resource', 'angular-touch', 'angular-mocks'],
         message : 'Choose angular modules you want to use',
         default : []
       }, {
@@ -81,18 +81,18 @@ module.exports = yeoman.generators.Base.extend({
         },
         type    : 'list',
         name    : 'unittestframework',
-        choices : ['jasmine', 'mocha', 'qunitjs'],
+        choices : [{'name':'Jasmine', 'value':'jasmine'},
+                    {'name':'Mocha', 'value':'mocha'},
+                    {'name':'QUnit', 'value':'qunit'}
+                  ],
         message : 'Choose which unit test framework you want to use',
         default : 'jasmine'
       }], function (answers) {
         for (i in answers.frameworks)
           {
-            this.log('...salut...');
             if (answers.frameworks[i] != 'Unit Tests Framework')
               {
-                this.log('...ok...');
                 this.bowerInstall([answers.frameworks[i]], {'save':true}, done);
-                this.log('...good...');
               }
           }
         if (answers.frameworks.contain('Unit Tests Framework'))
