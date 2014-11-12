@@ -67,6 +67,67 @@ module.exports = yeoman.generators.Base.extend({
     promptFrameworks: function() {
       var done = this.async();
       this.prompt([{
+        type    : 'list',
+        name    : 'stack',
+        choices : ['NodeJS MongoDB with Modern HTML5/CSS3/JS Client',
+                    'Vibe.D MongoDB with Modern HTML5/CSS3/JS Client',
+                    'Custom'
+                  ],
+        message : 'Choose app type',
+        default : []
+      }, {
+        when    : function(answer) {
+          return answer.stack == 'Custom';
+        },
+        type    : 'checkbox',
+        name    : 'apptype',
+        choices : ['Client',
+                    'Server'
+                  ],
+        message : 'Choose app types',
+        default : []
+      }, {
+        when    : function(answer) {
+          return answer.stack == 'Custom' && answer.apptype.contain('Server');
+        },
+        type    : 'list',
+        name    : 'serverstack',
+        choices : ['MEAN',
+                    'LAMP',
+                    'Custom'
+                  ],
+        message : 'Choose server stack',
+        default : []
+      }, {
+        when    : function(answer) {
+          return answer.stack == 'Custom' && answer.apptype.contain('Client');
+        },
+        type    : 'list',
+        name    : 'clientplatform',
+        choices : ['Multiplatform HTML5/CSS3/Js',
+                    'Multiplatform Native',
+                    'Multiplatform Flash'
+                  ],
+        message : 'Choose client technology',
+        default : []
+      }, {
+        when    : function(answer) {
+          return answer.stack == 'Custom' && answer.apptype.contain('Server') &&
+                  answer.serverstack == 'Custom';
+        },
+        type    : 'list',
+        name    : 'serverplatform',
+        choices : ['Javascript',
+                    'D',
+                    'Ruby',
+                    'Python',
+                    'PHP',
+                    'C#',
+                    'Go'
+                  ],
+        message : 'Choose server language',
+        default : []
+      }, {
         type    : 'checkbox',
         name    : 'frameworkstype',
         choices : ['Javascript Structure Frameworks',
