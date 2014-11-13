@@ -8,6 +8,11 @@ Array.prototype.contain = function(value) {
 var that;
 
 var yeoman = require('yeoman-generator');
+var install = require('./install');
+var basestack = require('./basestack');
+var clientstack = require('./clientstack');
+var serverstack = require('./serverstack');
+
 module.exports = yeoman.generators.Base.extend({
   constructor: function() {
     yeoman.generators.Base.apply(this, arguments);
@@ -18,58 +23,6 @@ module.exports = yeoman.generators.Base.extend({
     },
     initHierarchy: function() {
       this.sourceRoot(this.sourceRoot() + '/../../../templates');
-      this.dest.mkdir('builds', '755');
-      this.dest.mkdir('server', '755');
-      this.dest.mkdir('clients', '755');
-      this.dest.mkdir('dist', '755');
-      this.dest.mkdir('clients/components', '755');
-      this.dest.mkdir('clients/configs', '755');
-      this.dest.mkdir('clients/configs/development', '755');
-      this.dest.mkdir('clients/configs/production', '755');
-      this.dest.mkdir('clients/configs/shared', '755');
-      this.dest.mkdir('clients/tests', '755');
-      this.dest.mkdir('clients/tests/unit', '755');
-      this.dest.mkdir('clients/tests/e2e', '755');
-      this.dest.mkdir('clients/scripts', '755');
-      this.dest.mkdir('clients/scripts/services', '755');
-      this.dest.mkdir('clients/scripts/controllers', '755');
-      this.dest.mkdir('clients/views', '755');
-      this.dest.mkdir('clients/views/browsers', '755');
-      this.dest.mkdir('clients/views/mobiles', '755');
-      this.dest.mkdir('clients/views/desktops', '755');
-      this.dest.mkdir('clients/scripts/controllers', '755');
-      this.dest.mkdir('clients/scripts/controllers/mobiles', '755');
-      this.dest.mkdir('clients/scripts/controllers/browsers', '755');
-      this.dest.mkdir('clients/scripts/controllers/desktops', '755');
-      this.dest.mkdir('clients/styles', '755');
-      this.dest.mkdir('clients/assets', '755');
-      this.dest.mkdir('clients/assets/img', '755');
-      this.dest.mkdir('clients/assets/sound', '755');
-      this.dest.mkdir('clients/tests/e2e/desktops', '755');
-      this.dest.mkdir('clients/tests/e2e/mobiles', '755');
-      this.dest.mkdir('clients/tests/e2e/browsers', '755');
-      this.dest.mkdir('clients/tests/unit/shared', '755');
-      this.dest.mkdir('clients/tests/unit/desktops', '755');
-      this.dest.mkdir('clients/tests/unit/mobiles', '755');
-      this.dest.mkdir('clients/tests/unit/browsers', '755');
-      this.dest.mkdir('dist/server', '755');
-      this.dest.mkdir('dist/android', '755');
-      this.dest.mkdir('dist/ios', '755');
-      this.dest.mkdir('dist/windowsphone', '755');
-      this.dest.mkdir('dist/browser', '755');
-      this.dest.mkdir('dist/windows', '755');
-      this.dest.mkdir('dist/osx', '755');
-      this.dest.mkdir('dist/linux', '755');
-      this.dest.mkdir('server/controllers', '755');
-      this.dest.mkdir('server/models', '755');
-      this.dest.mkdir('server/routes', '755');
-      this.dest.mkdir('server/configs', '755');
-      this.dest.mkdir('server/configs/development', '755');
-      this.dest.mkdir('server/configs/production', '755');
-      this.dest.mkdir('server/configs/shared', '755');
-      this.dest.mkdir('server/tests', '755');
-      this.dest.mkdir('server/docs', '755');
-      this.dest.mkdir('', '755');
     },
     initConf: function() {
       this.src.copy('.gitignore', '.gitignore');
@@ -109,9 +62,9 @@ module.exports = yeoman.generators.Base.extend({
     },
     promptFrameworks: function() {
       var done = this.async();
-      var basequestions = require('./basestack').basequestions;
-      var clientquestions = require('./clientstack').clientquestions;
-      var serverquestions = require('./serverstack').serverquestions;
+      var basequestions = basestack.basequestions;
+      var clientquestions = clientstack.clientquestions;
+      var serverquestions = serverstack.serverquestions;
       var questions = basequestions.concat(serverquestions).concat(clientquestions);
       this.prompt(questions, function (answers) {
         that.answers = answers;
@@ -126,9 +79,9 @@ module.exports = yeoman.generators.Base.extend({
 
   },
   writing: {
-    folder: function() {
+    makeFolders: function() {
       var done = this.async();
-      require('./install').install(that.answers, that, done);
+      install.makeBaseFolderStruct(that, that.answers);
       done();
     }
   },
@@ -136,7 +89,11 @@ module.exports = yeoman.generators.Base.extend({
 
   },
   install: {
-
+    run: function() {
+      var done = this.async();
+      install.install(that.answers, that, done);
+      done();
+    }
   },
   end: {
 
