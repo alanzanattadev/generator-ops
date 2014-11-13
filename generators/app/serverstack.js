@@ -149,5 +149,16 @@ exports.serverquestions = [
                 ],
       message : 'Choose databases you want to use (use only one in general cases)',
       default : []
+    }, {
+      when    : function(answer) {
+        return answer.database != undefined && answer.database == 'MongoDB' &&
+                answer.serverframework == 'NodeJS';
+      },
+      type    : 'checkbox',
+      name    : 'databasedriver',
+      choices : ['Mongoose'
+                ],
+      message : 'Which NodeJS MongoDB Specific framework do you want to add to your project',
+      default : []
     }
 ];
