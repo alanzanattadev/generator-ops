@@ -8,23 +8,23 @@ exports.install = function(answers, that, done) {
                 switch (answers.webcomponentframeworks[i])
                 {
                   case "Polymer/polymer":
-                    that.bowerInstall([answers.webcomponentframeworks[i]], {'save':true}, done);
+                    that.bowerInstall([answers.webcomponentframeworks[i]], {'save':true, 'q':true}, done);
                     for (j in answers.polymermods)
                       {
-                        that.bowerInstall([answers.polymermods[j]], {'save':true}, done);
+                        that.bowerInstall([answers.polymermods[j]], {'save':true, 'q':true}, done);
                       }
                     break;
                   case "X-Tag":
                     // A Completer
                     break;
                   default:
-                    that.bowerInstall([answers.webcomponentframeworks[i]], {'save':true}, done);
+                    that.bowerInstall([answers.webcomponentframeworks[i]], {'save':true, 'q':true}, done);
                 }
               }
           }
         if (answers.frameworkstype.contain('Unit Tests Framework'))
           {
-            that.npmInstall([answers.unittestframework], {'save':true}, done);
+            that.npmInstall([answers.unittestframework], {'save':true, 'q':true}, done);
           }
         if (answers.frameworkstype.contain('Javascript Structure Frameworks'))
           {
@@ -35,10 +35,10 @@ exports.install = function(answers, that, done) {
                   case "angularjs":
                     for (i in answers.angularmods)
                       {
-                        that.bowerInstall([answers.angularmods[i]], {'save':true}, done);
+                        that.bowerInstall([answers.angularmods[i]], {'save':true, 'q':true}, done);
                       }
                   default:
-                    that.bowerInstall([answers.structureframeworks[i]], {'save':true}, done);
+                    that.bowerInstall([answers.structureframeworks[i]], {'save':true, 'q':true}, done);
                 }
               }
           }
