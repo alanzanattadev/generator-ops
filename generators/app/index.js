@@ -5,12 +5,17 @@ Array.prototype.contain = function(value) {
     return false;
 };
 
+var that;
+
 var yeoman = require('yeoman-generator');
 module.exports = yeoman.generators.Base.extend({
   constructor: function() {
     yeoman.generators.Base.apply(this, arguments);
   },
   initializing: {
+    init: function() {
+      that = this;
+    },
     initHierarchy: function() {
       this.sourceRoot(this.sourceRoot() + '/../../../templates');
       this.dest.mkdir('builds', '755');
@@ -109,54 +114,31 @@ module.exports = yeoman.generators.Base.extend({
       var serverquestions = require('./serverstack').serverquestions;
       var questions = basequestions.concat(serverquestions).concat(clientquestions);
       this.prompt(questions, function (answers) {
-        if (answers.frameworkstype.contain('WebComponent Frameworks'))
-          {
-            for (i in answers.webcomponentframeworks)
-              {
-                switch (answers.webcomponentframeworks[i])
-                {
-                  case "Polymer":
-                    this.bowerInstall(["Polymer/polymer"], {'save':true}, done);
-                    for (j in answers.polymermods)
-                      {
-                        this.bowerInstall([answers.polymermods[j]], {'save':true}, done);
-                      }
-                    this.dest.mkdir('www/components', 755);
-                    break;
-                  case "X-Tag":
-                    // A Completer
-                    break;
-                  default:
-                    this.bowerInstall([answers.webcomponentframeworks[i]], {'save':true}, done);
-                }
-              }
-          }
-        if (answers.frameworkstype.contain('Unit Tests Framework'))
-          {
-            this.npmInstall([answers.unittestframework], {'save':true}, done);
-          }
-        if (answers.frameworkstype.contain('Javascript Structure Frameworks'))
-          {
-            for (i in answers.structureframeworks)
-              {
-                switch (answers.structureframeworks[i])
-                {
-                  case "angularjs":
-                    for (i in answers.angularmods)
-                      {
-                        this.bowerInstall([answers.angularmods[i]], {'save':true}, done);
-                      }
-                    this.dest.mkdir('www/js/controllers', '755');
-                    this.dest.mkdir('www/js/services', '755');
-                    this.dest.mkdir('www/js/routes', '755');
-                    this.dest.mkdir('www/templates', '755');
-                  default:
-                    this.bowerInstall([answers.structureframeworks[i]], {'save':true}, done);
-                }
-              }
-          }
+        that.answers = answers;
         done();
       }.bind(this));
     }
+  },
+  configuring: {
+
+  },
+  default: {
+
+  },
+  writing: {
+    folder: function() {
+      var done = this.async();
+      require('./install').install(that.answers, that, done);
+      done();
+    }
+  },
+  conflicts: {
+
+  },
+  install: {
+
+  },
+  end: {
+
   }
 });

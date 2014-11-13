@@ -24,7 +24,8 @@ exports.clientquestions = [
     default : []
   }, {
     when    : function(answer) {
-      return answer.frameworkstype.contain('Unit Tests Framework');
+      return answer.frameworkstype != undefined &&
+              answer.frameworkstype.contain('Unit Tests Framework');
     },
     type    : 'list',
     name    : 'unittestframework',
@@ -36,7 +37,8 @@ exports.clientquestions = [
     default : 'jasmine'
   }, {
     when    : function(answer) {
-      return answer.frameworkstype.contain('Javascript Structure Frameworks');
+      return answer.frameworkstype != undefined &&
+              answer.frameworkstype.contain('Javascript Structure Frameworks');
     },
     type    : 'checkbox',
     name    : 'structureframeworks',
@@ -50,7 +52,8 @@ exports.clientquestions = [
     default : []
   }, {
     when    : function(answer) {
-      return answer.structureframeworks.contain('angularjs');
+      return answer.structureframeworks != undefined &&
+              answer.structureframeworks.contain('angularjs');
     },
     type    : 'checkbox',
     name    : 'angularmods',
@@ -59,7 +62,8 @@ exports.clientquestions = [
     default : []
   }, {
     when    : function(answer) {
-      return answer.frameworkstype.contain('WebComponent Frameworks');
+      return answer.frameworkstype != undefined &&
+              answer.frameworkstype.contain('WebComponent Frameworks');
     },
     type    : 'checkbox',
     name    : 'webcomponentframeworks',
@@ -74,7 +78,8 @@ exports.clientquestions = [
     default : []
   }, {
     when    : function(answer) {
-      return answer.webcomponentframeworks.contain('Polymer');
+      return answer.webcomponentframeworks != undefined &&
+              answer.webcomponentframeworks.contain('Polymer');
     },
     type    : 'checkbox',
     name    : 'polymermods',
