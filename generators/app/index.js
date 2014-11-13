@@ -112,8 +112,7 @@ module.exports = yeoman.generators.Base.extend({
         default : []
       }, {
         when    : function(answer) {
-          return answer.stack == 'Custom' && answer.apptype.contain('Server') &&
-                  answer.serverstack == 'Custom';
+          return answer.serverstack != undefined && answer.serverstack == 'Custom';
         },
         type    : 'list',
         name    : 'serverplatform',
@@ -129,8 +128,7 @@ module.exports = yeoman.generators.Base.extend({
         default : []
       }, {
         when    : function(answer) {
-          return answer.stack == 'Custom' && answer.apptype.contain('Server') &&
-                  answer.serverstack == 'Custom' && answer.serverplatform == 'D';
+          return answer.serverplatform != undefined && answer.serverplatform == 'D';
         },
         type    : 'list',
         name    : 'serverframework',
@@ -140,8 +138,7 @@ module.exports = yeoman.generators.Base.extend({
         default : []
       }, {
         when    : function(answer) {
-          return answer.stack == 'Custom' && answer.apptype.contain('Server') &&
-                  answer.serverstack == 'Custom' && answer.serverplatform == 'Javascript';
+          return answer.serverplatform != undefined && answer.serverplatform == 'Javascript';
         },
         type    : 'list',
         name    : 'serverframework',
@@ -151,8 +148,7 @@ module.exports = yeoman.generators.Base.extend({
         default : []
       }, {
         when    : function(answer) {
-          return answer.stack == 'Custom' && answer.apptype.contain('Server') &&
-                  answer.serverstack == 'Custom' && answer.serverplatform == 'Javascript' &&
+          return answer.serverplatform != undefined && answer.serverplatform == 'Javascript' &&
                   answer.serverframework == 'NodeJS';
         },
         type    : 'list',
@@ -163,8 +159,7 @@ module.exports = yeoman.generators.Base.extend({
         default : []
       }, {
         when    : function(answer) {
-          return answer.stack == 'Custom' && answer.apptype.contain('Server') &&
-                  answer.serverstack == 'Custom' && answer.serverplatform == 'Javascript' &&
+          return answer.serverframework != undefined &&
                   answer.serverframework == "NodeJS" && answer.serverwebframework == 'Express';
         },
         type    : 'list',
@@ -175,8 +170,7 @@ module.exports = yeoman.generators.Base.extend({
         default : []
       }, {
         when    : function(answer) {
-          return answer.stack == 'Custom' && answer.apptype.contain('Server') &&
-                  answer.serverstack == 'Custom' && answer.serverplatform == 'Ruby';
+          return answer.serverplatform != undefined && answer.serverplatform == 'Ruby';
         },
         type    : 'list',
         name    : 'serverframework',
@@ -186,8 +180,7 @@ module.exports = yeoman.generators.Base.extend({
         default : []
       }, {
         when    : function(answer) {
-          return answer.stack == 'Custom' && answer.apptype.contain('Server') &&
-                  answer.serverstack == 'Custom' && answer.serverplatform == 'Python';
+          return answer.serverplatform != undefined && answer.serverplatform == 'Python';
         },
         type    : 'list',
         name    : 'serverframework',
@@ -198,8 +191,7 @@ module.exports = yeoman.generators.Base.extend({
         default : []
       }, {
         when    : function(answer) {
-          return answer.stack == 'Custom' && answer.apptype.contain('Server') &&
-                  answer.serverstack == 'Custom' && answer.serverplatform == 'PHP';
+          return answer.serverplatform != undefined && answer.serverplatform == 'PHP';
         },
         type    : 'list',
         name    : 'serverframework',
@@ -210,8 +202,7 @@ module.exports = yeoman.generators.Base.extend({
         default : []
       }, {
         when    : function(answer) {
-          return answer.stack == 'Custom' && answer.apptype.contain('Server') &&
-                  answer.serverstack == 'Custom' && answer.serverplatform == 'C#';
+          return answer.serverplatform != undefined && answer.serverplatform == 'C#';
         },
         type    : 'list',
         name    : 'serverframework',
@@ -221,8 +212,7 @@ module.exports = yeoman.generators.Base.extend({
         default : []
       }, {
         when    : function(answer) {
-          return answer.stack == 'Custom' && answer.apptype.contain('Server') &&
-                  answer.serverstack == 'Custom' && answer.serverplatform == 'Go';
+          return answer.serverplatform != undefined && answer.serverplatform == 'Go';
         },
         type    : 'list',
         name    : 'serverframework',
@@ -232,8 +222,7 @@ module.exports = yeoman.generators.Base.extend({
         default : []
       }, {
         when    : function(answer) {
-          return answer.stack == 'Custom' && answer.apptype.contain('Server') &&
-                  answer.serverstack == 'Custom';
+          return answer.serverstack != undefined && answer.serverstack == 'Custom';
         },
         type    : 'list',
         name    : 'withdatabase',
@@ -244,8 +233,7 @@ module.exports = yeoman.generators.Base.extend({
         default : []
       }, {
         when    : function(answer) {
-          return answer.stack == 'Custom' && answer.apptype.contain('Server') &&
-                  answer.serverstack == 'Custom' && answer.withdatabase == 'yes';
+          return answer.withdatabase != undefined && answer.withdatabase == 'yes';
         },
         type    : 'list',
         name    : 'database',
