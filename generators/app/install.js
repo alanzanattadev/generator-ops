@@ -5,13 +5,12 @@ exports.install = function(answers, that, done) {
         {
           switch (answers.webcomponentframeworks[i])
           {
-            case "Polymer":
-              that.bowerInstall(["Polymer/polymer"], {'save':true}, done);
+            case "Polymer/polymer":
+              that.bowerInstall([answers.webcomponentframeworks[i]], {'save':true}, done);
               for (j in answers.polymermods)
                 {
                   that.bowerInstall([answers.polymermods[j]], {'save':true}, done);
                 }
-              that.dest.mkdir('www/components', 755);
               break;
             case "X-Tag":
               // A Completer
@@ -36,10 +35,6 @@ exports.install = function(answers, that, done) {
                 {
                   that.bowerInstall([answers.angularmods[i]], {'save':true}, done);
                 }
-              that.dest.mkdir('www/js/controllers', '755');
-              that.dest.mkdir('www/js/services', '755');
-              that.dest.mkdir('www/js/routes', '755');
-              that.dest.mkdir('www/templates', '755');
             default:
               that.bowerInstall([answers.structureframeworks[i]], {'save':true}, done);
           }

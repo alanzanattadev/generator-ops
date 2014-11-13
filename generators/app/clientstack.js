@@ -70,7 +70,7 @@ exports.clientquestions = [
     },
     type    : 'checkbox',
     name    : 'webcomponentframeworks',
-    choices : ["Polymer",
+    choices : [{"name":"Polymer", "value":"Polymer/polymer"},
                 "X-Tag",
                 {'name':'Bootstrap', 'value':'bootstrap'},
                 {'name':'Foundation', 'value':'foundation'},
