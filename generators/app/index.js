@@ -20,13 +20,6 @@ module.exports = yeoman.generators.Base.extend({
   initializing: {
     init: function() {
       that = this;
-    },
-    initHierarchy: function() {
-      this.sourceRoot(this.sourceRoot() + '/../../../templates');
-    },
-    initConf: function() {
-      this.src.copy('.gitignore', '.gitignore');
-      this.src.copy('.bowerrc', '.bowerrc');
     }
   },
   prompting: {
@@ -55,8 +48,7 @@ module.exports = yeoman.generators.Base.extend({
         packagejson.name = answers.name;
         packagejson.description = answers.desc;
         packagejson.author = answers.author;
-        this.dest.write("package.json", JSON.stringify(packagejson, undefined, 4));
-        this.dest.write("bower.json", JSON.stringify(packagejson, undefined, 4));
+        that.packagejson = packagejson;
         done();
       }.bind(this));
     },
@@ -79,6 +71,9 @@ module.exports = yeoman.generators.Base.extend({
 
   },
   writing: {
+    initSource: function() {
+      this.sourceRoot(this.sourceRoot() + '/../../../templates');
+    },
     makeFolders: function() {
       var done = this.async();
       install.makeBaseFolderStruct(that, that.answers);
@@ -88,6 +83,12 @@ module.exports = yeoman.generators.Base.extend({
           install.makeServerFolderStruct(that, that.answers);
         }
       done();
+    },
+    makeConf: function() {
+      this.dest.write("package.json", JSON.stringify(that.packagejson, undefined, 4));
+      this.dest.write("bower.json", JSON.stringify(that.packagejson, undefined, 4));
+      this.src.copy('.gitignore', '.gitignore');
+      this.src.copy('.bowerrc', '.bowerrc');
     }
   },
   conflicts: {
