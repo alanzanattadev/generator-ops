@@ -4,7 +4,7 @@ exports.basequestions = [
     name    : 'stack',
     choices : [{'name':'NodeJS MongoDB with Modern HTML5/CSS3/JS Client', 'value':'nodemongojs'},
                 {'name':'Vibe.D MongoDB with Modern HTML5/CSS3/JS Client', 'value':'vibemongojs'},
-                {'name':'Custom', 'custom'}
+                {'name':'Custom', 'value':'custom'}
               ],
     message : 'Choose app type',
     default : []
