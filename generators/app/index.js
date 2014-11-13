@@ -76,6 +76,10 @@ module.exports = yeoman.generators.Base.extend({
       this.dest.mkdir(that.packagejson.name, '755');
       this.destinationRoot(this.destinationRoot() + '/' + that.packagejson.name);
     },
+    initGit: function() {
+      this.spawnCommand('git', ['init']);
+      this.src.copy('.gitignore', '.gitignore');
+    },
     makeFolders: function() {
       var done = this.async();
       install.makeBaseFolderStruct(that, that.answers);
@@ -89,7 +93,6 @@ module.exports = yeoman.generators.Base.extend({
     makeConf: function() {
       this.dest.write("package.json", JSON.stringify(that.packagejson, undefined, 4));
       this.dest.write("bower.json", JSON.stringify(that.packagejson, undefined, 4));
-      this.src.copy('.gitignore', '.gitignore');
       this.src.copy('.bowerrc', '.bowerrc');
     }
   },
