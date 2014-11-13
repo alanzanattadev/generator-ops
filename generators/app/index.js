@@ -71,8 +71,10 @@ module.exports = yeoman.generators.Base.extend({
 
   },
   writing: {
-    initSource: function() {
+    initEndpoints: function() {
       this.sourceRoot(this.sourceRoot() + '/../../../templates');
+      this.dest.mkdir(that.packagejson.name, '755');
+      this.destinationRoot(this.destinationRoot() + '/' + that.packagejson.name);
     },
     makeFolders: function() {
       var done = this.async();
