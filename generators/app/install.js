@@ -47,7 +47,7 @@ exports.install = function(answers, that, done) {
     }
 };
 
-exports.makeClientFolderStruct = function(that) {
+exports.makeClientFolderStruct = function(that, answers) {
   that.dest.mkdir('clients', '755');
   that.dest.mkdir('clients/components', '755');
   that.dest.mkdir('clients/configs', '755');
@@ -81,7 +81,7 @@ exports.makeClientFolderStruct = function(that) {
   that.dest.mkdir('clients/tests/unit/browsers', '755');
 };
 
-exports.makeServerFolderStruct = function(that) {
+exports.makeServerFolderStruct = function(that, answers) {
   that.dest.mkdir('server', '755');
   that.dest.mkdir('server/controllers', '755');
   that.dest.mkdir('server/models', '755');
@@ -94,7 +94,7 @@ exports.makeServerFolderStruct = function(that) {
   that.dest.mkdir('server/docs', '755');
 };
 
-exports.makeBaseFolderStruct = function(that) {
+exports.makeBaseFolderStruct = function(that, answers) {
   that.dest.mkdir('builds', '755');
   that.dest.mkdir('dist', '755');
   that.dest.mkdir('dist/server', '755');

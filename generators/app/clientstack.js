@@ -1,7 +1,7 @@
 exports.clientquestions = [
   {
     when    : function(answer) {
-      return answer.stack == 'Custom' && answer.apptype.contain('Client');
+      return answer.stack == 'custom' && answer.apptype.contain('Client');
     },
     type    : 'list',
     name    : 'clientplatform',

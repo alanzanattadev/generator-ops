@@ -82,6 +82,11 @@ module.exports = yeoman.generators.Base.extend({
     makeFolders: function() {
       var done = this.async();
       install.makeBaseFolderStruct(that, that.answers);
+      if (that.answers.stack == 'nodemongojs')
+        {
+          install.makeClientFolderStruct(that, that.answers);
+          install.makeServerFolderStruct(that, that.answers);
+        }
       done();
     }
   },

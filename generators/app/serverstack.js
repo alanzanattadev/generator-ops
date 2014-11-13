@@ -1,7 +1,7 @@
 exports.serverquestions = [
     {
       when    : function(answer) {
-        return answer.stack == 'Custom' && answer.apptype.contain('Server');
+        return answer.stack == 'custom' && answer.apptype.contain('Server');
       },
       type    : 'list',
       name    : 'serverstack',
