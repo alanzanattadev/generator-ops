@@ -1,7 +1,7 @@
 exports.clientquestions = [
   {
     when    : function(answer) {
-      return answer.stack == 'custom' && answer.apptype.contain('Client');
+      return answer.apptype != undefined && answer.apptype.contain('Client');
     },
     type    : 'list',
     name    : 'clientplatform',
@@ -12,6 +12,9 @@ exports.clientquestions = [
     message : 'Choose client technology',
     default : []
   }, {
+    when    : function(answer) {
+      return answer.apptype != undefined && answer.apptype.contain('Client');
+    },
     type    : 'checkbox',
     name    : 'frameworkstype',
     choices : ['Javascript Structure Frameworks',
