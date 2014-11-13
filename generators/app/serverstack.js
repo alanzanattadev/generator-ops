@@ -63,7 +63,7 @@ exports.serverquestions = [
         return answer.serverframework != undefined &&
                 answer.serverframework == "NodeJS" && answer.serverwebframework == 'Express';
       },
-      type    : 'list',
+      type    : 'checkbox',
       name    : 'serverotherswebframeworks',
       choices : ['Passport'
                 ],
