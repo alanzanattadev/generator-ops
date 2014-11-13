@@ -136,7 +136,7 @@ exports.serverquestions = [
       when    : function(answer) {
         return answer.withdatabase != undefined && answer.withdatabase == 'yes';
       },
-      type    : 'list',
+      type    : 'checkbox',
       name    : 'database',
       choices : ['MongoDB',
                   'Cassandra',
@@ -147,7 +147,7 @@ exports.serverquestions = [
                   'MariaDB',
                   'Redis'
                 ],
-      message : 'Choose database you want to use',
+      message : 'Choose databases you want to use (use only one in general cases)',
       default : []
     }
 ];
